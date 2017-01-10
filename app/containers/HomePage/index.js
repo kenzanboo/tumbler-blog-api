@@ -24,7 +24,9 @@ import messages from './messages';
 import { loadRepos } from '../App/actions';
 import { changeBlog, changeTag } from './actions';
 import { selectBlog, selectTag } from './selectors';
-import { selectRepos, selectLoading, selectError } from 'containers/App/selectors';
+import { selectAddedRepo, selectRepos, selectLoading, selectError } from 'containers/App/selectors';
+import Button from 'components/Button'
+
 
 export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   /**
@@ -54,7 +56,6 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
     } else if (this.props.repos !== false) {
       mainContent = (<List items={this.props.repos} component={RepoListItem} />);
     }
-
     return (
       <article>
         <Helmet
@@ -67,7 +68,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
 
           <Section>
             <H2>
-              <FormattedMessage {...messages.trymeHeader} />
+              Tumbler API
             </H2>
             <Form onSubmit={this.props.onSubmitForm}>
               <label htmlFor="blog">
@@ -93,7 +94,10 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
                 />
               </label>
             </Form>
+            <Button onClick={this.props.onSubmitForm}>Search</Button>
             {mainContent}
+
+            <List items={this.props.addedRepo} component={RepoListItem} />
           </Section>
         </div>
       </article>
@@ -133,6 +137,7 @@ const mapStateToProps = createStructuredSelector({
   tag: selectTag(),
   loading: selectLoading(),
   error: selectError(),
+  addedRepo: selectAddedRepo(),
 });
 
 // Wrap the component to inject dispatch and state into it

@@ -20,11 +20,11 @@ export default defineMessages({
   },
   blogMessage: {
     id: 'boilerplate.containers.HomePage.blog.message',
-    defaultMessage: 'Blog name',
+    defaultMessage: 'Blog name : ',
   },
   tagMessage: {
     id: 'boilerplate.containers.HomePage.tag.message',
-    defaultMessage: 'Tag name',
+    defaultMessage: 'Tag name : ',
   },
   trymeAtPrefix: {
     id: 'boilerplate.containers.HomePage.tryme.atPrefix',

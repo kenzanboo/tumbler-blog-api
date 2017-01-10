@@ -24,7 +24,7 @@
   "boilerplate.containers.HomePage.start_project.message": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices",
   "boilerplate.containers.HomePage.tryme.atPrefix": "@",
   "boilerplate.containers.HomePage.tryme.header": "Try me!",
-  "boilerplate.containers.HomePage.tag.message": "Tag Name",
-  "boilerplate.containers.HomePage.blog.message": "Blog Name",
+  "boilerplate.containers.HomePage.tag.message": "Tag Name : ",
+  "boilerplate.containers.HomePage.blog.message": "Blog Name : ",
   "boilerplate.containers.NotFoundPage.header": "Page not found."
 }

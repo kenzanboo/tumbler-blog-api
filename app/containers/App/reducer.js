@@ -11,11 +11,12 @@
  */
 
 import {
+  ADD_REPO,
   LOAD_REPOS_SUCCESS,
   LOAD_REPOS,
   LOAD_REPOS_ERROR,
 } from './constants';
-import { fromJS } from 'immutable';
+import { fromJS, List } from 'immutable';
 
 // The initial state of the App
 const initialState = fromJS({
@@ -25,10 +26,14 @@ const initialState = fromJS({
   userData: {
     repositories: false,
   },
+  addedRepo: []
 });
 
 function appReducer(state = initialState, action) {
   switch (action.type) {
+    case ADD_REPO:
+      return state
+        .updateIn(['addedRepo'], list => list.push(action.repo)); // NOTE consider not allowing duplicates
     case LOAD_REPOS:
       return state
         .set('loading', true)

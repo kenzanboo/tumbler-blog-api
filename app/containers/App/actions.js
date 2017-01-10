@@ -16,10 +16,18 @@
  */
 
 import {
+  ADD_REPO,
   LOAD_REPOS,
   LOAD_REPOS_SUCCESS,
   LOAD_REPOS_ERROR,
 } from './constants';
+
+export function addRepo(repo) {
+  return {
+    type: ADD_REPO,
+    repo,
+  };
+}
 
 /**
  * Load the repositories, this action starts the request saga
