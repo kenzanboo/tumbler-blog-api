@@ -1,4 +1,5 @@
 import 'whatwg-fetch';
+import fetchJsonp from 'fetch-jsonp'
 
 /**
  * Parses the JSON returned by a network request
@@ -19,7 +20,7 @@ function parseJSON(response) {
  * @return {object|undefined} Returns either the response, or throws an error
  */
 function checkStatus(response) {
-  if (response.status >= 200 && response.status < 300) {
+  if (response.ok) {
     return response;
   }
 
@@ -37,7 +38,7 @@ function checkStatus(response) {
  * @return {object}           The response data
  */
 export default function request(url, options) {
-  return fetch(url, options)
+  return fetchJsonp(url, options)
     .then(checkStatus)
     .then(parseJSON);
 }

@@ -1,6 +1,7 @@
 /**
  * Gets the repositories of the user from Github
  */
+import _ from 'lodash';
 import { format } from 'url';
 import config from '../../config/config';
 import secrets from '../../config/secrets';
@@ -11,7 +12,7 @@ import { LOAD_REPOS } from 'containers/App/constants';
 import { reposLoaded, repoLoadingError } from 'containers/App/actions';
 
 import request from 'utils/request';
-import { selectUsername, selectTag } from 'containers/HomePage/selectors';
+import { selectBlog, selectTag } from 'containers/HomePage/selectors';
 
 const getTagUrl = ({ tag }) => {
   const uriOptions = {
@@ -19,7 +20,8 @@ const getTagUrl = ({ tag }) => {
     hostname: `${config.apiUrl.tumbler}/tagged`,
     query: {
       tag,
-      api: secrets.apiKey.tumbler
+      api_key: secrets.apiKey.tumbler,
+      limit: 5
     }
   };
   return format(uriOptions);
@@ -31,7 +33,8 @@ const getBlogUrl = ({ blog, tag }) => {
     hostname: `${config.apiUrl.tumbler}/blog/${blog}.tumblr.com/posts`,
     query: {
       tag,
-      api: secrets.apiKey.tumbler
+      api_key: secrets.apiKey.tumbler,
+      limit: 5
     }
   };
   return format(uriOptions);
@@ -42,18 +45,23 @@ const getBlogUrl = ({ blog, tag }) => {
  * Github repos request/response handler
  */
 export function* getRepos() {
-  // Select username from store
-  const username = yield select(selectUsername());
+  const blog = yield select(selectBlog());
   const tag = yield select(selectTag());
-  const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
-
-  console.log(getTagUrl({ tag }));
-  console.log(getBlogUrl({blog: 'blog', tag }));
+  const requestOptions = { mode: 'no-cors' };
+  let requestURL;
+  if (blog) {
+    requestURL = getBlogUrl({ blog, tag });
+  } else {
+    requestURL = getTagUrl({ tag });
+  }
 
   try {
     // Call our request helper (see 'utils/request')
-    const repos = yield call(request, requestURL);
-    yield put(reposLoaded(repos, username));
+    console.log(requestURL); // todo remove
+    const response = yield call(request, requestURL, requestOptions);
+    const repos = _.get(response, 'response.posts') || _.get(response, 'response');
+    console.log(repos); // todo remove
+    yield put(reposLoaded(repos, blog));
   } catch (err) {
     yield put(repoLoadingError(err));
   }

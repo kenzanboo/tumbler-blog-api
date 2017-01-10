@@ -6,9 +6,9 @@ import { createSelector } from 'reselect';
 
 const selectHome = () => (state) => state.get('home');
 
-const selectUsername = () => createSelector(
+const selectBlog = () => createSelector(
   selectHome(),
-  (homeState) => homeState.get('username')
+  (homeState) => homeState.get('blog')
 );
 const selectTag = () => createSelector(
   selectHome(),
@@ -17,6 +17,6 @@ const selectTag = () => createSelector(
 
 export {
   selectHome,
-  selectUsername,
+  selectBlog,
   selectTag,
 };

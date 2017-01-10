@@ -22,8 +22,8 @@ import RepoListItem from 'containers/RepoListItem';
 import Section from './Section';
 import messages from './messages';
 import { loadRepos } from '../App/actions';
-import { changeUsername, changeTag } from './actions';
-import { selectUsername, selectTag } from './selectors';
+import { changeBlog, changeTag } from './actions';
+import { selectBlog, selectTag } from './selectors';
 import { selectRepos, selectLoading, selectError } from 'containers/App/selectors';
 
 export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -31,7 +31,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
    * when initial state username is not null, submit the form to load repos
    */
   componentDidMount() {
-    if (this.props.username && this.props.username.trim().length > 0) {
+    if (this.props.blog && this.props.blog.trim().length > 0) {
       this.props.onSubmitForm();
     }
   }
@@ -64,30 +64,20 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
           ]}
         />
         <div>
-          <CenteredSection>
-            <H2>
-              <FormattedMessage {...messages.startProjectHeader} />
-            </H2>
-            <p>
-              <FormattedMessage {...messages.startProjectMessage} />
-            </p>
-          </CenteredSection>
+
           <Section>
             <H2>
               <FormattedMessage {...messages.trymeHeader} />
             </H2>
             <Form onSubmit={this.props.onSubmitForm}>
-              <label htmlFor="username">
-                <FormattedMessage {...messages.trymeMessage} />
-                <AtPrefix>
-                  <FormattedMessage {...messages.trymeAtPrefix} />
-                </AtPrefix>
+              <label htmlFor="blog">
+                <FormattedMessage {...messages.blogMessage} />
                 <Input
-                  id="username"
+                  id="blog"
                   type="text"
-                  placeholder="mxstbr"
-                  value={this.props.username}
-                  onChange={this.props.onChangeUsername}
+                  placeholder="kenzanboo"
+                  value={this.props.blog}
+                  onChange={this.props.onChangeBlog}
                 />
               </label>
             </Form>
@@ -128,7 +118,7 @@ HomePage.propTypes = {
 
 export function mapDispatchToProps(dispatch) {
   return {
-    onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
+    onChangeBlog: (evt) => dispatch(changeBlog(evt.target.value)),
     onChangeTag: (evt) => dispatch(changeTag(evt.target.value)),
     onSubmitForm: (evt) => {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
@@ -139,7 +129,7 @@ export function mapDispatchToProps(dispatch) {
 
 const mapStateToProps = createStructuredSelector({
   repos: selectRepos(),
-  username: selectUsername(),
+  blog: selectBlog(),
   tag: selectTag(),
   loading: selectLoading(),
   error: selectError(),

@@ -18,13 +18,13 @@ export default defineMessages({
     id: 'boilerplate.containers.HomePage.tryme.header',
     defaultMessage: 'Try me!',
   },
-  trymeMessage: {
-    id: 'boilerplate.containers.HomePage.tryme.message',
-    defaultMessage: 'Show Github repositories by',
+  blogMessage: {
+    id: 'boilerplate.containers.HomePage.blog.message',
+    defaultMessage: 'Blog name',
   },
   tagMessage: {
-    id: 'boilerplate.containers.HomePage.tryme.message',
-    defaultMessage: 'Tag',
+    id: 'boilerplate.containers.HomePage.tag.message',
+    defaultMessage: 'Tag name',
   },
   trymeAtPrefix: {
     id: 'boilerplate.containers.HomePage.tryme.atPrefix',
