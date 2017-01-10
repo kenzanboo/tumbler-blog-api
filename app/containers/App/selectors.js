@@ -28,7 +28,11 @@ const selectRepos = () => createSelector(
 
 const selectAddedRepo = () => createSelector(
   selectGlobal(),
-  (globalState) => globalState.get('addedRepo').toJS()
+  (globalState) => {
+    //console.log(globalState.get('addedRepo').values());
+    console.log(globalState.get('addedRepo').toJSON());
+    return globalState.get('addedRepo').toJSON()
+  }
 );
 
 const selectLocationState = () => {

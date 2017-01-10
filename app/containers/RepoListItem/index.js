@@ -23,7 +23,7 @@ import Button from 'components/Button'
 export class RepoListItem extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     const item = this.props.item;
-
+    if (!item) { return <div></div> }
     // Put together the content of the repository
     const content = (
       <Wrapper>
@@ -59,6 +59,7 @@ export function mapDispatchToProps(dispatch) {
 }
 
 const mapStateToProps = createStructuredSelector({
+
 });
 
 // Wrap the component to inject dispatch and state into it

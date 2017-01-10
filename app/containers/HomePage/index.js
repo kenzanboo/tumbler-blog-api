@@ -56,6 +56,8 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
     } else if (this.props.repos !== false) {
       mainContent = (<List items={this.props.repos} component={RepoListItem} />);
     }
+
+    console.log('repo in render', this.props.addedRepo);
     return (
       <article>
         <Helmet

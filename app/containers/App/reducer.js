@@ -26,14 +26,17 @@ const initialState = fromJS({
   userData: {
     repositories: false,
   },
-  addedRepo: []
+  addedRepo: new Set(),
+  updatedTimeStamp: 0,
 });
 
 function appReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_REPO:
+      const updatedSet = state.get('addedRepo').add(action.repo);
       return state
-        .updateIn(['addedRepo'], list => list.push(action.repo)); // NOTE consider not allowing duplicates
+        .set('addedRepo', updatedSet)
+        .set('updatedTimeStamp', new Date()); // this is required for set to update and trigger component update
     case LOAD_REPOS:
       return state
         .set('loading', true)
