@@ -17,6 +17,7 @@
 
 import {
   CHANGE_USERNAME,
+  CHANGE_TAG
 } from './constants';
 
 /**
@@ -29,6 +30,13 @@ import {
 export function changeUsername(name) {
   return {
     type: CHANGE_USERNAME,
+    name,
+  };
+}
+
+export function changeTag(name) {
+  return {
+    type: CHANGE_TAG,
     name,
   };
 }

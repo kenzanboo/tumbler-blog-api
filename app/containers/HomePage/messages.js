@@ -22,6 +22,10 @@ export default defineMessages({
     id: 'boilerplate.containers.HomePage.tryme.message',
     defaultMessage: 'Show Github repositories by',
   },
+  tagMessage: {
+    id: 'boilerplate.containers.HomePage.tryme.message',
+    defaultMessage: 'Tag',
+  },
   trymeAtPrefix: {
     id: 'boilerplate.containers.HomePage.tryme.atPrefix',
     defaultMessage: '@',
