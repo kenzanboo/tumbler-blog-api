@@ -7,6 +7,8 @@ It is not styled and does not look visually appealing. Project was to demonstrat
 This is based off a react boilerplate 
 https://github.com/mxstbr/react-boilerplate
 
+When reading the code, the concept of 'repos' means 'tumbler posts'. repos = tumbler posts. I had left that there in order to finish up the project with the time constraints.  
+
 #####Project requirements are here: 
 <a href="https://gist.github.com/anonymous/ba0534481b6020821e57394edcf4883b">Github link</a>
 <a href="https://drive.google.com/open?id=0B2PWNPISLaXda3l0cmhtbGZxU2s">PDF here </a>

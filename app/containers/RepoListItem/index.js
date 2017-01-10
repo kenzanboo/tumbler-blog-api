@@ -17,7 +17,7 @@ import RepoLink from './RepoLink';
 import Wrapper from './Wrapper';
 import { selectCurrentUser } from 'containers/App/selectors';
 import { createStructuredSelector } from 'reselect';
-import { addRepo } from 'containers/App/actions';
+import { addRepo, removeRepo } from 'containers/App/actions';
 import Button from 'components/Button'
 
 export class RepoListItem extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -34,7 +34,12 @@ export class RepoListItem extends React.PureComponent { // eslint-disable-line r
             <img src={_.get(item, `photos[0].alt_sizes[3].url`)} />
           }</div>
         </RepoLink>
-        <Button onClick={this.props.onAddRepo.bind(null, this.props.item)}>Add</Button>
+        {
+          this.props.removeButton ?
+            <Button onClick={this.props.onRemoveRepo.bind(null, this.props.item)}>Remove</Button>
+            :
+            <Button onClick={this.props.onAddRepo.bind(null, this.props.item)}>Add</Button>
+        }
       </Wrapper>
     );
 
@@ -55,6 +60,7 @@ RepoListItem.propTypes = {
 export function mapDispatchToProps(dispatch) {
   return {
     onAddRepo: (repo) => dispatch(addRepo(repo)),
+    onRemoveRepo: (repo) => dispatch(removeRepo(repo)),
   };
 }
 

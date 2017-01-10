@@ -12,6 +12,7 @@
 
 import {
   ADD_REPO,
+  REMOVE_REPO,
   LOAD_REPOS_SUCCESS,
   LOAD_REPOS,
   LOAD_REPOS_ERROR,
@@ -38,6 +39,11 @@ function appReducer(state = initialState, action) {
         .set('addedRepo', updatedSet)
         .set('updatedTimeStamp', new Date()); // this is required for Set to update and trigger component update
         //something to do with immutable objects and sets not realizing there is an update
+    case REMOVE_REPO:
+      state.get('addedRepo').delete(action.repo); // delete does not return original as per documentation. returns true
+      return state
+        .set('updatedTimeStamp', new Date()); // this is required for Set to update and trigger component update
+    //something to do with immutable objects and sets not realizing there is an update
     case LOAD_REPOS:
       return state
         .set('loading', true)

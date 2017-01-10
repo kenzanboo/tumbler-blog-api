@@ -56,14 +56,14 @@ export function* getRepos() {
 
   try {
     // Call our request helper (see 'utils/request')
-    console.log(requestURL); // todo remove
+    console.log(requestURL); // Left in here for devs to see the calls being made todo
     const response = yield call(request, requestURL);
     // /posts and /tagged calls have slightly different placement of posts
     const repos = _.get(response, 'response.posts') || _.get(response, 'response');
-    console.log(repos); // todo remove
+    console.log(repos); // Left in here for devs to see the calls being made todo
     yield put(reposLoaded(repos, blog));
   } catch (err) {
-    console.log('ERROR', err);
+    console.log('ERROR', err); // Left in here for devs to see the calls being made todo
     yield put(repoLoadingError(err));
   }
 }

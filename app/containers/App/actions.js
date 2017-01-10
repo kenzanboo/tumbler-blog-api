@@ -17,6 +17,7 @@
 
 import {
   ADD_REPO,
+  REMOVE_REPO,
   LOAD_REPOS,
   LOAD_REPOS_SUCCESS,
   LOAD_REPOS_ERROR,
@@ -25,6 +26,12 @@ import {
 export function addRepo(repo) {
   return {
     type: ADD_REPO,
+    repo,
+  };
+}
+export function removeRepo(repo) {
+  return {
+    type: REMOVE_REPO,
     repo,
   };
 }

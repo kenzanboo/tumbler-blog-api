@@ -57,7 +57,6 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
       mainContent = (<List items={this.props.repos} component={RepoListItem} />);
     }
 
-    console.log('repo in render', this.props.addedRepo);
     return (
       <article>
         <Helmet
@@ -99,7 +98,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
             <Button onClick={this.props.onSubmitForm}>Search</Button>
             {mainContent}
 
-            <List items={this.props.addedRepo} component={RepoListItem} />
+            <List items={this.props.addedRepo} component={RepoListItem} componentProps={{ removeButton: true }}/>
           </Section>
         </div>
       </article>

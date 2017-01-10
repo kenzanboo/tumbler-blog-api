@@ -10,6 +10,7 @@
  */
 
 export const ADD_REPO = 'boilerplate/App/ADD_REPOS';
+export const REMOVE_REPO = 'boilerplate/App/REMOVE_REPO';
 export const LOAD_REPOS = 'boilerplate/App/LOAD_REPOS';
 export const LOAD_REPOS_SUCCESS = 'boilerplate/App/LOAD_REPOS_SUCCESS';
 export const LOAD_REPOS_ERROR = 'boilerplate/App/LOAD_REPOS_ERROR';
