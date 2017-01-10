@@ -47,7 +47,6 @@ const getBlogUrl = ({ blog, tag }) => {
 export function* getRepos() {
   const blog = yield select(selectBlog());
   const tag = yield select(selectTag());
-  const requestOptions = { mode: 'no-cors' };
   let requestURL;
   if (blog) {
     requestURL = getBlogUrl({ blog, tag });
@@ -58,11 +57,13 @@ export function* getRepos() {
   try {
     // Call our request helper (see 'utils/request')
     console.log(requestURL); // todo remove
-    const response = yield call(request, requestURL, requestOptions);
+    const response = yield call(request, requestURL);
+    // /posts and /tagged calls have slightly different placement of posts
     const repos = _.get(response, 'response.posts') || _.get(response, 'response');
     console.log(repos); // todo remove
     yield put(reposLoaded(repos, blog));
   } catch (err) {
+    console.log('ERROR', err);
     yield put(repoLoadingError(err));
   }
 }

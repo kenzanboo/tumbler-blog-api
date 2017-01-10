@@ -4,6 +4,7 @@
  * Lists the name and the issue count of a repository
  */
 
+import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
@@ -19,24 +20,17 @@ import { selectCurrentUser } from 'containers/App/selectors';
 export class RepoListItem extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     const item = this.props.item;
-    let nameprefix = '';
-
-    // If the repository is owned by a different person than we got the data for
-    // it's a fork and we should show the name of the owner
-    if (item.owner.login !== this.props.currentUser) {
-      nameprefix = `${item.owner.login}/`;
-    }
 
     // Put together the content of the repository
     const content = (
       <Wrapper>
-        <RepoLink href={item.html_url} target="_blank">
-          {nameprefix + item.name}
+        <RepoLink href={item.short_url} target="_blank">
+          <div>{item.blog_name}</div>
+          <div>{item.summary}</div>
+          <div>{item.type == 'photo' &&
+            <img src={_.get(item, `photos[0].alt_sizes[3].url`)} />
+          }</div>
         </RepoLink>
-        <IssueLink href={`${item.html_url}/issues`} target="_blank">
-          <IssueIcon />
-          <FormattedNumber value={item.open_issues_count} />
-        </IssueLink>
       </Wrapper>
     );
 
