@@ -36,7 +36,8 @@ function appReducer(state = initialState, action) {
       const updatedSet = state.get('addedRepo').add(action.repo);
       return state
         .set('addedRepo', updatedSet)
-        .set('updatedTimeStamp', new Date()); // this is required for set to update and trigger component update
+        .set('updatedTimeStamp', new Date()); // this is required for Set to update and trigger component update
+        //something to do with immutable objects and sets not realizing there is an update
     case LOAD_REPOS:
       return state
         .set('loading', true)
